@@ -1,0 +1,39 @@
+<table> 
+    <tr *ngFor="let student of studentList">
+    <td>{{student.firstName}}</td>
+    <td>{{student.lastName}}</td>
+     
+    <td><span (click)="onEditClick($event, student)">&nbsp; &nbsp; Edit &nbsp; &nbsp; </span></td>
+    <td><span (click)="onDeleteClick($event, student)">Delete</span></td>
+    </tr> 
+   </table>
+   
+   
+   <div class="container">
+    <div [hidden]="submitted">
+    
+    <h1>Student Form</h1>
+    
+    <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+    <div class="form-group">
+    <label for="name">First Name</label>
+    <input type="text" class="form-control" id="firstName" required
+                  [(ngModel)]="student.firstName" name="firstName"  #name="ngModel">
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+             Name is required
+    </div>
+   
+   
+   <label for="name">Last Name</label>
+    <input type="text" class="form-control" id="lastName" required
+                  [(ngModel)]="student.lastName" name="lastName" #name="ngModel">
+    <div [hidden]="name.valid || name.pristine"  class="alert alert-danger">
+             Name is required
+    </div>
+    </div>
+   
+    <button type="submit" class="btn btn-success" [disabled]="!studentForm.form.valid">Submit</button>
+    &nbsp;&nbsp;
+    <button (click) = "onPutSubmit()" class="btn btn-success" [disabled]="!studentForm.form.valid">Edit</button>
+    </form>
+    </div>
